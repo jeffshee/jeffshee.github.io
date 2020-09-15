@@ -111,7 +111,10 @@ footer-link-col: "#404040"
 #navbar-img: "/assets/img/bgimage.png"
 footer-img: "/assets/img/bgimage.png"
 page-img: "/assets/img/bgimage.png"
-bgimage: "/assets/img/top.jpg"
+
+# Big Image
+bigimg:   
+- "/assets/img/bgimage.png" : "磯部トースト"
 
 # Suggest a colour for mobile browsers to use as the browser's theme. This is only supported by a few mobile browsers.
 #mobile-theme-col: "#0085A1"
