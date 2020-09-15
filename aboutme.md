@@ -18,7 +18,6 @@ I'm from Port Dickson, Negeri Sembilan. It is a nice place to hang around -- *A 
 As a Malaysian, you won't be surprised that I love **sweet and spicy food**! We Malaysians love all kinds of food, from different cultures. Food is indeed the *soul of Malaysia*.
 
 ![Malaysia food](/assets/img/food.jpg)
-![Malaysia food table](/assets/img/food_table.png){: style="float: right; margin-right: 12em; margin-top: 4em;"}
  1. *Char Kway Teow*
  2. *Laksa*
  3. *Roti Canai*
