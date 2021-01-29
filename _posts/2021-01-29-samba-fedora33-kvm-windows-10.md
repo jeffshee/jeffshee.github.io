@@ -9,11 +9,11 @@ share-img:
 tags: [Linux]
 ---
 
-## File transfer between Linux and KVM Guest Windows 10
+# File transfer between Linux and KVM Guest Windows 10
 
 OS: Fedora 33
 
-# 1. Install samba
+## 1. Install samba
 `sudo dnf install samba`
 
 Expected result
@@ -31,11 +31,11 @@ samba-client-4.13.3-0.fc33.x86_64
 samba-4.13.3-0.fc33.x86_64
 ```
 
-# 2. Configure samba
+## 2. Configure samba
 The samba configuration file is located at `/etc/samba/smb.conf`.
 There is also an example located at `/etc/samba/smb.conf.example` for your references.
 
-First, let's backup the existing configuration.
+First, let's backup the existing configuration.  
 `sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.old`
 
 Edit the configuration. See the example for the explaination of parameters.
@@ -94,17 +94,17 @@ Here I show my configuration for an example.
 	browseable = yes
 ```
 
-# 3. Enable samba
+## 3. Enable samba
 `sudo systemctl enable smb`
 `sudo systemctl start smb`
 
-Sidenote: 
-Always remember to reload samba once you modify the configuration.
-`sudo systemctl restart smb`
-Also you can check the samba's current status by:
+>Sidenote:  
+Always remember to reload samba once you modify the configuration.  
+`sudo systemctl restart smb`  
+Also you can check the samba's current status by:  
 `sudo systemctl status smb`
 
-# 4. Configure SELinux Boolean
+## 4. Configure SELinux Boolean
 There are a fews SELinux Boolean you will need to pay attention.
 Here I show my configuration.
 ```
@@ -124,12 +124,12 @@ tmpreaper_use_samba --> off
 use_samba_home_dirs --> off
 virt_use_samba --> off
 ```
-You can enable them by using `setsebool`, for example:
+You can enable them by using `setsebool`, for example:  
 `sudo setsebool -P samba_enable_home_dirs=1`
 
-Refer to https://linux.die.net/man/8/samba_selinux for explaination.
+Refer to [samba_selinux](https://linux.die.net/man/8/samba_selinux) for detail explaination.
 
-# 5. Configure firewall
+## 5. Configure firewall
 ```
 sudo firewall-cmd --add-service=samba
 sudo firewall-cmd --reload
@@ -154,10 +154,10 @@ FedoraWorkstation (active)
 ```
 Note that I also opened up port 137/tcp 138/tcp 139/tcp 445/tcp.
 These should be redundant, however, try adding these ports if it doesn't work.
-To add port 445/tcp, for example:
+To add port 445/tcp, for example:  
 `sudo firewall-cmd --add-port=445/tcp`
 
-Sidenote: 
+>Sidenote:  
 Always remember to reload firewall once you modify the configuration.
 `sudo firewall-cmd --reload`
 
@@ -184,12 +184,12 @@ Alternately, enter the address to connect, for example `smb://192.168.0.197/`
 Press Win Key + R, to launch the run dialog.
 Enter the address to connect, for example `//192.168.0.197/`
 
-Sidenote: 
-You wouldn't see your Linux samba shown in Windows' `File Explorer > Network`.
-Try https://github.com/christgau/wsdd if you really want that functionality.
+>Sidenote:  
+You wouldn't see your Linux samba shown in Windows' `File Explorer > Network`.  
+Try [wsdd](https://github.com/christgau/wsdd) if you really want that functionality.
 (I tried but haven't got it to work in my system yet...)
 
-# 6. Configure firewall (libvirt)
+## 6. Configure firewall (libvirt)
 You still need to allow samba for libvirt. These commands should do the tricks.
 ```
 sudo firewall-cmd --zone=libvirt --add-service=samba
@@ -218,4 +218,4 @@ libvirt (active)
 
 ```
 
-That's all!!
+## That's all!! 🤩
